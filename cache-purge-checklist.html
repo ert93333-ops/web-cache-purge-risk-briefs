@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cache purge checklist | Web Cache Purge Risk Briefs</title>
+  <meta name="description" content="A practical cache purge checklist for CDN scope, purge method, cache-key variation, blast radius, origin load, stale behavior, validation, owner path, and token/customer URL hygiene.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="Cache purge checklist">
+  <meta property="og:description" content="Checklist for reviewing CDN/cache purge scope, method, blast radius, origin load, validation, and privacy risk before clearing cache.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ert93333-ops.github.io/web-cache-purge-risk-briefs/cache-purge-checklist.html">
+  <link rel="canonical" href="https://ert93333-ops.github.io/web-cache-purge-risk-briefs/cache-purge-checklist.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="./">Web Cache Purge Risk Briefs</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="./#workflow">Workflow</a>
+        <a href="./#pricing">Pricing</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <article class="section">
+      <div class="shell article-body">
+        <p class="brief-label">Checklist</p>
+        <h1>Cache purge checklist</h1>
+        <p>Use this before approving a CDN/cache purge request. Keep CDN tokens, API keys, cookies, sessions, signed URLs, customer URLs, origin hostnames, internal URLs, raw logs, credentials, PII, and production data out of public tools.</p>
+
+        <h2>1. State purge scope and method</h2>
+        <ul>
+          <li>CDN/platform, zone/service/property, environment, hostname, URL, path prefix, tag, surrogate key, CP code, or cache key</li>
+          <li>Purge method: invalidate, delete, soft purge, ban, purge by URL, tag, prefix, host, key, CP code, or emergency broad purge</li>
+          <li>Exact page types affected: HTML, assets, API-adjacent paths, logged-in pages, cart, checkout, account, pricing, product, CMS, or tenant pages</li>
+        </ul>
+
+        <h2>2. Check cache-key and origin risk</h2>
+        <ul>
+          <li>Query strings, headers, cookies, device, locale, tenant, auth state, and Vary behavior</li>
+          <li>Origin load, origin shield, stale-while-revalidate, stale-if-error, TTL, revalidation, warm-up, and rate-limit risk</li>
+          <li>Whether delete-style purges can force origin retrieval or create a miss storm</li>
+        </ul>
+
+        <h2>3. Define cause, validation, and ownership</h2>
+        <ul>
+          <li>Cause and urgency: deploy, CMS publish, pricing/product inventory update, security incident, wrong content, image/CSS/JS release, or legal takedown</li>
+          <li>Validation: sample URLs, cache-status/header checks, HIT/MISS, Age, x-cache or cf-cache-status, edge location, before/after evidence, and monitoring</li>
+          <li>Named owner, reviewer, approver, escalation path, comms owner, and next update time</li>
+        </ul>
+
+        <h2>4. Avoid unsafe wording and private data</h2>
+        <ul>
+          <li>Avoid "purge everything", "delete all", "clear cache", "no origin risk", "no customer impact", "ignore query strings", or "force refresh" unless separately reviewed and approved.</li>
+          <li>Do not paste API tokens, bearer tokens, cookies, sessions, signed URLs, customer URLs, origin hostnames, internal URLs, raw logs, credentials, PII, or production data.</li>
+          <li>Document blast radius and origin-load risk honestly, even when the purge is urgent.</li>
+        </ul>
+
+        <p><a class="button primary" href="./?utm_source=seo&utm_medium=organic&utm_campaign=web_cache_purge_risk_template#workflow">Generate a cache purge risk brief</a></p>
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <p>Browser-local cache purge review. No CDN connection, purge execution, cache warming, credentials, raw logs, customer URLs, origin hostnames, or production data.</p>
+      <a href="./">Web Cache Purge Risk Briefs</a>
+    </div>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>

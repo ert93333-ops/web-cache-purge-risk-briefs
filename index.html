@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web Cache Purge Risk Briefs | Cache purge checklist</title>
+  <meta name="description" content="Paste public-safe CDN/cache purge notes and generate a reviewer-ready risk brief, purge scope checklist, origin-load warning, validation plan, owner handoff, and token/customer URL privacy flags.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="Web Cache Purge Risk Briefs">
+  <meta property="og:description" content="Turn cache purge requests into a blast-radius review brief.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ert93333-ops.github.io/web-cache-purge-risk-briefs/">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://ert93333-ops.github.io/web-cache-purge-risk-briefs/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#workflow">Skip to workflow</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="./" aria-label="Web Cache Purge Risk Briefs home">Web Cache Purge Risk Briefs</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#workflow">Workflow</a>
+        <a href="#pricing">Pricing</a>
+        <a href="cache-purge-checklist.html">Checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <h1>Turn cache purge requests into a blast-radius review brief.</h1>
+          <p class="hero-subtitle">Paste public-safe CDN/cache purge notes or scrubbed snippets and get purge scope, method warnings, cache-key variation checks, origin-load risk, validation steps, owner handoff, and token/customer URL privacy flags before a human clears cache.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#workflow">Generate cache purge risk brief</a>
+            <a class="button secondary" href="cache-purge-checklist.html">View cache purge checklist</a>
+          </div>
+        </div>
+        <aside class="brief-preview" aria-label="Brief preview">
+          <p class="brief-label">Checks before purge</p>
+          <strong>CDN, zone, host/path/tag, purge method, cache key, blast radius, origin load, stale behavior, validation headers, owner, and privacy hygiene.</strong>
+          <p>No CDN connection. No purge execution. No cache warming. No credentials.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="workflow" class="section">
+      <div class="shell section-grid">
+        <div>
+          <h2>Turn vague purge requests into precise approval briefs.</h2>
+          <p>Use public-safe notes only. Do not paste CDN tokens, API keys, cookies, sessions, signed URLs, customer URLs, origin hostnames, internal URLs, raw logs, credentials, PII, or production data.</p>
+          <div class="input-grid">
+            <label>Cache purge notes or scrubbed CDN snippet<textarea id="purge-notes" placeholder="Example: Cloudflare production pricing pages stale after CMS publish."></textarea></label>
+            <label>CDN/platform, zone/service/property, environment, hostname, URL, prefix, tag, surrogate key, CP code, cache key, or path scope<textarea id="scope-notes" class="short-textarea" placeholder="Example: Cloudflare, production zone, www.example.com, /pricing/* prefix, product-page tag."></textarea></label>
+            <label>Purge method<textarea id="method-notes" class="short-textarea" placeholder="Example: targeted invalidate by prefix and cache tag; no broad purge unless separately approved."></textarea></label>
+            <label>Cache key, query string, header, cookie, device, locale, tenant, auth, or Vary behavior<textarea id="key-notes" class="short-textarea" placeholder="Example: cache key varies by query, device, locale, tenant, and logged-in state."></textarea></label>
+            <label>Blast-radius context<textarea id="blast-notes" class="short-textarea" placeholder="Example: HTML pricing/product pages, CMS content, cart, checkout, account, API-adjacent paths."></textarea></label>
+            <label>Origin load, stale behavior, TTL, warm-up, or rate-limit risk<textarea id="origin-notes" class="short-textarea" placeholder="Example: origin shield enabled, SWR/SIE, 30 minute TTL, warm-up sample URLs, watch miss-storm risk."></textarea></label>
+            <label>Cause and urgency<textarea id="cause-notes" class="short-textarea" placeholder="Example: CMS pricing copy update before launch; not a security incident."></textarea></label>
+            <label>Validation path<textarea id="validation-notes" class="short-textarea" placeholder="Example: curl headers, CF-Cache-Status, Age, HIT/MISS, edge colo, screenshots, monitoring."></textarea></label>
+            <label>Owner, reviewer, approver, escalation, comms owner, or next update<textarea id="owner-notes" class="short-textarea" placeholder="Example: SRE owns purge review; web performance lead approves; support sends update by 10:30 UTC."></textarea></label>
+            <label>Privacy notes<textarea id="privacy-notes" class="short-textarea" placeholder="Example: no tokens, cookies, sessions, signed URLs, customer URLs, origin hostnames, raw logs, or credentials."></textarea></label>
+          </div>
+          <div class="form-actions">
+            <button class="button secondary" type="button" id="sample-button">Load sample purge</button>
+            <button class="button primary" type="button" id="generate-button">Generate cache purge risk brief</button>
+          </div>
+          <p class="copy-status" id="workflow-error" role="status" aria-live="polite"></p>
+        </div>
+        <aside class="output-panel" id="output-panel" aria-live="polite">
+          <div class="status-pill"><span class="status-dot"></span><span id="output-status">Waiting for cache purge notes</span></div>
+          <div id="brief-output" class="brief-output"><p>Paste public-safe CDN/cache purge context to generate a reviewer-ready risk brief.</p></div>
+          <button class="button small" type="button" id="copy-brief" disabled>Copy brief</button>
+          <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <div class="shell">
+        <h2>Pay only if this reduces risky cache purge approvals.</h2>
+        <div class="pricing-grid">
+          <article class="price-card">
+            <h3>Starter</h3>
+            <p class="price">$19/month</p>
+            <p>For founders and small engineering teams reviewing ad hoc CDN/cache purge requests.</p>
+            <button class="button full plan-button" type="button" data-plan="Starter">Request Starter access</button>
+          </article>
+          <article class="price-card">
+            <h3>Team</h3>
+            <p class="price">$79/month</p>
+            <p>For platform, SRE, DevOps, ecommerce, CMS, and web performance teams standardizing purge review.</p>
+            <button class="button full plan-button" type="button" data-plan="Team">Request Team access</button>
+          </article>
+        </div>
+        <form class="handoff-panel" id="intent-form">
+          <h3>Purchase-intent fallback</h3>
+          <p>Stored locally in this browser. The public issue handoff excludes private email by default.</p>
+          <div class="input-grid compact">
+            <label>Email<input id="intent-email" type="email" placeholder="you@example.com"></label>
+            <label>Role/team<input id="intent-role" type="text" placeholder="SRE, platform, DevOps, ecommerce engineering..."></label>
+            <label>Cache purge review volume<input id="purge-volume" type="text" placeholder="Example: 10 purge reviews per month"></label>
+            <label>Current cache purge review process<input id="current-process" type="text" placeholder="Example: Slack request plus CDN dashboard screenshot"></label>
+            <label>Plan interest<select id="plan-interest"><option>Starter</option><option>Team</option></select></label>
+            <label>Willingness to pay<input id="willingness" type="text" placeholder="$19/month, $79/month, paid pilot..."></label>
+          </div>
+          <button class="button primary" type="submit">Request early access</button>
+          <p class="copy-status" id="intent-status" role="status" aria-live="polite"></p>
+          <div id="remote-intent" hidden>
+            <a class="button secondary" id="remote-intent-link" target="_blank" rel="noreferrer">Open public request</a>
+            <button class="button ghost" type="button" id="copy-remote-intent">Copy request details</button>
+            <p class="copy-status" id="remote-copy-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <p>Browser-local MVP. No CDN connection, purge execution, invalidate/delete/ban execution, cache warming, cache rule changes, origin requests, credentials, raw logs, backend, or external database.</p>
+      <a href="cache-purge-checklist.html">Cache purge checklist</a>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
