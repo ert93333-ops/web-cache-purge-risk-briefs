@@ -6,7 +6,7 @@ Static browser-local MVP for turning public-safe CDN/cache purge notes or scrubb
 
 - Landing: `https://ert93333-ops.github.io/web-cache-purge-risk-briefs/`
 - Checklist: `https://ert93333-ops.github.io/web-cache-purge-risk-briefs/cache-purge-checklist.html`
-- Public marketing checklist: `pending marketing task`
+- Public marketing checklist: `https://gist.github.com/ert93333-ops/00ba8ca55e41dea84086cd3159b734d0`
 
 ## Scope
 
